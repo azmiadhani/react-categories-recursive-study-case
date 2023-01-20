@@ -21,17 +21,19 @@ const Category = () => {
   }, [getAllCategory]);
 
   return (
-    <div className="h-fit w-full flex items-center justify-center p-5">
-      <div className="bg-primary-content w-96 h-full shadow-cs rounded-lg p-2">
-        <CategoryCollapse
-          category={getAllCategory?.data ? getAllCategory.data : undefined}
-          handleCategoryClick={handleCategoryClick}
-          marginLeft={2}
-          choosenCategory={choosenCategory}
-          // childOnly={true}
-        />
+    <>
+      <div className="h-fit w-full flex flex-col gap-5 items-center justify-center p-5">
+        <div className="bg-primary-content w-96 h-full shadow-cs rounded-lg p-2">
+          <CategoryCollapse
+            category={getAllCategory?.data ? getAllCategory.data : undefined}
+            handleCategoryClick={handleCategoryClick}
+            marginLeft={2}
+            choosenCategory={choosenCategory}
+            // childOnly={true}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

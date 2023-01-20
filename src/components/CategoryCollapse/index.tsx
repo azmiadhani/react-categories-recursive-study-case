@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { Category } from "../../types/component";
 import cn from "../../utils/classNames";
+import * as S from "./style";
 
 type CategoryCollapseProps = {
   category: Category[] | undefined;
@@ -10,6 +11,7 @@ type CategoryCollapseProps = {
   childOnly?: boolean;
   choosenCategory?: number;
 };
+
 const CategoryCollapse = ({
   category,
   marginLeft = 1,
@@ -17,7 +19,6 @@ const CategoryCollapse = ({
   childOnly,
   choosenCategory,
 }: CategoryCollapseProps) => {
-  console.log("render");
   const [subCategoryCollapse, setSubCategoryCollapse] = useState<boolean[]>([]);
 
   const handleCollapseClick = (
@@ -51,21 +52,18 @@ const CategoryCollapse = ({
   return (
     <>
       {category?.map((category, i) => (
-        <div
+        <S.CategorySubCategoryContainer
           key={"category-" + category.id}
-          className={
-            "w-full text-lg text-base-content/70" +
-            cn([
-              childOnly && category.category?.length > 0
-                ? "cursor-default pl-4"
-                : "cursor-pointer",
-            ])
-          }
+          className={cn([
+            childOnly && category.category?.length > 0
+              ? "cursor-default pl-4"
+              : "cursor-pointer",
+          ])}
         >
-          <div className="flex gap-1 hover:bg-base-300 rounded-md items-center justify-between">
+          <S.CategoryContainer>
+            {/* if sub category is exists */}
             {category?.category ? (
-              <div
-                className="flex items-center justify-center p-2"
+              <S.CategoryToggleContainer
                 onClick={() => {
                   handleCollapseClick(i);
                 }}
@@ -76,9 +74,9 @@ const CategoryCollapse = ({
                     cn([subCategoryCollapse.at(i) ? "rotate-180" : ""])
                   }
                 />
-              </div>
+              </S.CategoryToggleContainer>
             ) : null}
-            <div
+            <S.CategoryClickArea
               className={cn([
                 "w-full p-2",
                 choosenCategory === category.id ? "font-bold" : "",
@@ -94,15 +92,16 @@ const CategoryCollapse = ({
                 }
               }}
             >
-              <span
+              <S.CategoryName
                 className={"text-sm" + cn([category?.category ? "" : "pl-2"])}
               >
                 {category.name}
-              </span>
-            </div>
-          </div>
+              </S.CategoryName>
+            </S.CategoryClickArea>
+          </S.CategoryContainer>
+          {/* if subcategory is collapsed and sub category is exists */}
           {subCategoryCollapse.at(i) && category.category?.length > 0 ? (
-            <div className="pl-5">
+            <S.SubCategoryContainer className="pl-5">
               <CategoryCollapse
                 category={category?.category}
                 marginLeft={marginLeft + 2}
@@ -110,9 +109,9 @@ const CategoryCollapse = ({
                 childOnly={childOnly}
                 choosenCategory={choosenCategory}
               />
-            </div>
+            </S.SubCategoryContainer>
           ) : null}
-        </div>
+        </S.CategorySubCategoryContainer>
       ))}
     </>
   );

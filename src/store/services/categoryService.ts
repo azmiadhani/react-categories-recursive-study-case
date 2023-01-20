@@ -14,22 +14,8 @@ export const categoryApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Category"],
     }),
-    getCategoriesByMerchantID: builder.query<
-      GetCategoriesByMerchantIDResponse,
-      string
-    >({
-      query: (id) => ({
-        url: `/categories/merchants/${id}`,
-        method: "GET",
-      }),
-      providesTags: ["Category"],
-    }),
   }),
 });
 
-export const {
-  useGetAllCategoryQuery,
-  useLazyGetAllCategoryQuery,
-  useGetCategoriesByMerchantIDQuery,
-  useLazyGetCategoriesByMerchantIDQuery,
-} = categoryApi;
+export const { useGetAllCategoryQuery, useLazyGetAllCategoryQuery } =
+  categoryApi;
