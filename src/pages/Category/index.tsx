@@ -21,8 +21,8 @@ const Category = () => {
   }, [getAllCategory]);
 
   return (
-    <div className="h-fit w-full flex items-center justify-center">
-      <div className="bg-primary-content w-96 h-full shadow-lg rounded-lg p-2">
+    <div className="h-fit w-full flex items-center justify-center p-5">
+      <div className="bg-primary-content w-96 h-full shadow-cs rounded-lg p-2">
         <CategoryCollapse
           category={getAllCategory?.data ? getAllCategory.data : undefined}
           handleCategoryClick={handleCategoryClick}
