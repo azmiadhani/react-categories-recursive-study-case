@@ -62,20 +62,25 @@ const CategoryCollapse = ({
         >
           <S.CategoryContainer>
             {/* if sub category is exists */}
-            {category?.category ? (
-              <S.CategoryToggleContainer
-                onClick={() => {
+            <S.CategoryToggleContainer
+              onClick={() => {
+                if (category.category) {
                   handleCollapseClick(i);
-                }}
-              >
-                <HiOutlineChevronDown
-                  className={
-                    `cursor-pointer transition-transform duration-300 ` +
-                    cn([subCategoryCollapse.at(i) ? "rotate-180" : ""])
-                  }
-                />
-              </S.CategoryToggleContainer>
-            ) : null}
+                } else {
+                  handleClick(category.id, category.name);
+                }
+              }}
+            >
+              <HiOutlineChevronDown
+                className={
+                  `cursor-pointer transition-transform duration-300 ` +
+                  cn([
+                    subCategoryCollapse.at(i) ? "rotate-180" : "",
+                    category?.category ? "opacity-100" : "opacity-0",
+                  ])
+                }
+              />
+            </S.CategoryToggleContainer>
             <S.CategoryClickArea
               className={cn([
                 "w-full p-2",
@@ -92,11 +97,7 @@ const CategoryCollapse = ({
                 }
               }}
             >
-              <S.CategoryName
-                className={"text-sm" + cn([category?.category ? "" : "pl-2"])}
-              >
-                {category.name}
-              </S.CategoryName>
+              <S.CategoryName>{category.name}</S.CategoryName>
             </S.CategoryClickArea>
           </S.CategoryContainer>
           {/* if subcategory is collapsed and sub category is exists */}
