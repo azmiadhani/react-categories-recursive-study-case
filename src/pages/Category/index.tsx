@@ -3,6 +3,8 @@ import CategoryCollapse from "../../components/CategoryCollapse";
 import { useGetAllCategoryQuery } from "../../store/services/categoryService";
 import { CategoryQuery } from "../../types/query";
 import { CategoryQueryToQueryParam } from "../../utils/DTOMapper";
+import * as S from "./style";
+import Card from "../../components/common/Card";
 
 const Category = () => {
   const { data: getAllCategory, isLoading: getAllCategoryIsLoading } =
@@ -21,19 +23,16 @@ const Category = () => {
   }, [getAllCategory]);
 
   return (
-    <>
-      <div className="h-fit w-full flex flex-col gap-5 items-center justify-center p-5">
-        <div className="bg-primary-content w-96 h-full shadow-cs rounded-lg p-2">
-          <CategoryCollapse
-            category={getAllCategory?.data ? getAllCategory.data : undefined}
-            handleCategoryClick={handleCategoryClick}
-            marginLeft={2}
-            choosenCategory={choosenCategory}
-            // childOnly={true}
-          />
-        </div>
-      </div>
-    </>
+    <S.CategoryPageContainer>
+      <Card>
+        <CategoryCollapse
+          category={getAllCategory?.data ? getAllCategory.data : undefined}
+          handleCategoryClick={handleCategoryClick}
+          marginLeft={2}
+          choosenCategory={choosenCategory}
+        />
+      </Card>
+    </S.CategoryPageContainer>
   );
 };
 
