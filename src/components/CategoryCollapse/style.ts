@@ -32,5 +32,4 @@ export const CategoryClickArea = tw.div<any>`
 
 export const SubCategoryContainer = tw.div<any>`
     w-full
-    p-2
 `;

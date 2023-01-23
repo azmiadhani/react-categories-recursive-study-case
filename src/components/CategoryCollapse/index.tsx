@@ -6,7 +6,6 @@ import * as S from "./style";
 
 type CategoryCollapseProps = {
   category: Category[] | undefined;
-  marginLeft?: number;
   handleCategoryClick: (id: number, name: string) => void;
   childOnly?: boolean;
   choosenCategory?: number;
@@ -14,7 +13,6 @@ type CategoryCollapseProps = {
 
 const CategoryCollapse = ({
   category,
-  marginLeft = 1,
   handleCategoryClick,
   childOnly,
   choosenCategory,
@@ -105,7 +103,6 @@ const CategoryCollapse = ({
             <S.SubCategoryContainer className="pl-5">
               <CategoryCollapse
                 category={category?.category}
-                marginLeft={marginLeft + 2}
                 handleCategoryClick={handleCategoryClick}
                 childOnly={childOnly}
                 choosenCategory={choosenCategory}

@@ -28,7 +28,6 @@ const Category = () => {
         <CategoryCollapse
           category={getAllCategory?.data ? getAllCategory.data : undefined}
           handleCategoryClick={handleCategoryClick}
-          marginLeft={2}
           choosenCategory={choosenCategory}
         />
       </Card>
